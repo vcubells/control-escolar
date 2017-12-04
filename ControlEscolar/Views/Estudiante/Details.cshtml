@@ -1,0 +1,60 @@
+﻿@model ControlEscolar.Models.Estudiante
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Estudiante</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Apellidos)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Apellidos)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FechaIngreso)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaIngreso)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Materias)    
+    </div>
+    <div class="display-field">
+        <table>
+            <tr>
+                <th>Materia</th>
+                <th>Calificación</th>
+            </tr>
+
+            @foreach (var m in Model.Materias)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(d => m.Materia.Titulo) 
+                    </td>
+                    <td>
+                        @Html.DisplayFor(d => m.Calificacion)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PersonaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

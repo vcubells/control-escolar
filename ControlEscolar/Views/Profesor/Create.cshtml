@@ -1,0 +1,76 @@
+﻿@model ControlEscolar.Models.Profesor
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Profesor</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nombre)
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Apellidos)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Apellidos)
+            @Html.ValidationMessageFor(model => model.Apellidos)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            <table>
+                <tr>
+                    @{
+                        int columnas = 0;
+    foreach (var materia in ViewBag.Materias as List<ControlEscolar.ViewModels.MateriasAsignadas>)
+    {   
+        if (columnas++ % 5 == 0) {
+            @:</tr> <tr>
+        }
+        <td>
+                    <input type="checkbox" 
+                        name="materiasSeleccionadas" 
+                        value="@materia.MateriaID"
+                        @(Html.Raw(materia.Asignada ? "checked=\"checked\"" : ""))
+                        />
+                    @materia.Titulo
+        </td> 
+    }
+                    }
+                </tr>
+            </table>
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

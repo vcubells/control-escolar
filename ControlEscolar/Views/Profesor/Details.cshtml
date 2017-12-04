@@ -1,0 +1,43 @@
+﻿@model ControlEscolar.Models.Profesor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Profesor</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Apellidos)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Apellidos)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NombreCompleto)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NombreCompleto)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PersonaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

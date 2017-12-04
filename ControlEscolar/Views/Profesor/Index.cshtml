@@ -1,0 +1,92 @@
+﻿@model ControlEscolar.ViewModels.ProfesorDetalle
+
+@{
+    ViewBag.Title = "Profesores";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Nombre completo
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Oficina
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Profesores) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreCompleto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Oficina.Ubicacion)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PersonaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PersonaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PersonaID })
+             @Html.ActionLink("Materias", "Index", new { id=item.PersonaID })
+        </td>
+    </tr>
+}
+
+</table>
+
+@if (Model.Materias != null)
+{
+<h2>Materias impartidas por el profesor</h2>
+<table>
+    <tr>
+        <th>Título</th>
+        <th>Créditos</th>
+        <th>Departamento</th>
+        <th></th>
+    </tr>
+
+    @foreach (var i in Model.Materias)
+    {
+        <tr>
+            <td>@i.Titulo</td>
+            <td>@i.Creditos</td>
+            <td>@i.Departamento.Nombre</td>
+            <td>
+                @Html.ActionLink("Estudiantes", "Index", new { materiaID=i.MateriaID })
+            </td>
+        </tr>
+    }
+</table>
+}
+
+@if (Model.Estudiantes != null)
+{
+<h2>Estudiantes inscritos en la materia</h2>
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Calificación</th>
+    </tr>
+
+    @foreach (var i in Model.Estudiantes)
+    {
+        <tr>
+            <td>@i.Estudiante.NombreCompleto</td>
+            <td>@Html.DisplayFor(m => i.Calificacion)</td>
+        </tr>
+    }
+</table>
+}

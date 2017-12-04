@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ControlEscolar.ViewModels.Resumen>
+
+@{
+    ViewBag.Title = "Resumen";
+}
+
+<h1>Resumen de inscripciones por fecha</h1>
+
+<table>
+    <tr>
+        <th>Fecha de Inscripción</th>
+        <th>Total de Estudiantes</th>
+    </tr>
+    @foreach (var i in Model)
+    {
+        <tr>
+            <td>
+                @String.Format("{0:d}", i.FechaInscripcion)
+            </td>
+            <td>
+                @i.TotalEstudiantes
+            </td>
+        </tr>
+    }
+</table>
